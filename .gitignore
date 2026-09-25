@@ -1,0 +1,18 @@
+.DS_Store
+.omx/
+*.log
+*.tmp
+*.bak
+.env
+.env.*
+!.env.example
+
+# Never commit credentials or local-only state.
+**/hosts.yml
+**/local.zsh
+**/*credentials*
+**/*token*
+**/*secret*
+**/*private_key*
+**/id_rsa*
+**/id_ed25519*

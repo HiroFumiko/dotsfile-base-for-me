@@ -1,0 +1,97 @@
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   ~/Library/Application Support/com.mitchellh.ghostty/config
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options. Users should only need to set
+# options that they want to change from the default.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Ghostty can reload the configuration while running by using the menu
+# options or the bound key (default: Command + Shift + comma on macOS and
+# Control + Shift + comma on other platforms). Not all config options can be
+# reloaded while running; some only apply to new windows and others may require
+# a full restart to take effect.
+
+# Config syntax crash course
+# ==========================
+# # The config file consists of simple key-value pairs,
+# # separated by equals signs.
+# font-family = Iosevka
+# window-padding-x = 2
+#
+# # Spacing around the equals sign does not matter.
+# # All of these are identical:
+# key=value
+# key= value
+# key =value
+# key = value
+#
+# # Any line beginning with a # is a comment. It's not possible to put
+# # a comment after a config option, since it would be interpreted as a
+# # part of the value. For example, this will have a value of "#123abc":
+# background = #123abc
+#
+# # Empty values are used to reset config keys to default.
+# key =
+#
+# # Some config options have unique syntaxes for their value,
+# # which is explained in the docs for that config option.
+# # Just for example:
+# resize-overlay-duration = 4s 200ms
+
+# ---------------------------------------------------------------------------
+# Migrated from iTerm2 "Default" profile (2026-04-21)
+# Source: ~/Documents/iTerm2 State.itermexport
+# ---------------------------------------------------------------------------
+
+# Font
+font-family = MesloLGS NF
+# Fall back to macOS's built-in Menlo; no extra font installation required.
+font-family = Menlo
+font-size = 13
+
+# Base colors
+background = #000000
+foreground = #bbbbbb
+cursor-color = #bbbbbb
+cursor-text = #ffffff
+selection-background = #b5d5ff
+selection-foreground = #000000
+
+# ANSI palette (classic xterm / iTerm default)
+palette = 0=#000000
+palette = 1=#bb0000
+palette = 2=#00bb00
+palette = 3=#bbbb00
+palette = 4=#0000bb
+palette = 5=#bb00bb
+palette = 6=#00bbbb
+palette = 7=#bbbbbb
+palette = 8=#555555
+palette = 9=#ff5555
+palette = 10=#55ff55
+palette = 11=#ffff55
+palette = 12=#5555ff
+palette = 13=#ff55ff
+palette = 14=#55ffff
+palette = 15=#ffffff
+
+# Transparency (iTerm Transparency = 0.087 → opacity 0.913)
+background-opacity = 0.900
+
+# Bold / cursor behavior
+bold-is-bright = true
+cursor-style = block
+cursor-style-blink = false
+
+# Scrollback
+scrollback-limit = 1000

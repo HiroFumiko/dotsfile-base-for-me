@@ -1,0 +1,4 @@
+[tools]
+# Global tools follow the latest release. Projects can pin their own versions.
+node = "latest"
+rust = { version = "latest", profile = "default" }

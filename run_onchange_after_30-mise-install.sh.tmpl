@@ -1,0 +1,6 @@
+#!/bin/bash
+# mise config checksum: {{ include "private_dot_config/mise/config.toml" | sha256sum }}
+set -euo pipefail
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+mise install --yes

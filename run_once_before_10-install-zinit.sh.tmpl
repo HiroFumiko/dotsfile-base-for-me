@@ -1,0 +1,8 @@
+#!/bin/bash
+set -euo pipefail
+
+zinit_home="$HOME/.local/share/zinit/zinit.git"
+if [[ ! -d "$zinit_home/.git" ]]; then
+  mkdir -p "$(dirname "$zinit_home")"
+  git clone https://github.com/zdharma-continuum/zinit.git "$zinit_home"
+fi

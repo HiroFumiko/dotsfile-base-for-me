@@ -1,0 +1,30 @@
+# Taps used by the current development environment.
+tap "oven-sh/bun"
+
+# Daily development tools. Homebrew resolves current versions at install time.
+brew "agent-browser"
+brew "chezmoi"
+brew "coreutils"
+brew "gh"
+brew "git-lfs"
+brew "herdr"
+brew "htop"
+brew "libomp"
+brew "mise"
+brew "openldap"
+brew "postgresql@18", restart_service: false
+brew "powerlevel10k"
+brew "ripgrep"
+brew "tmux"
+brew "unbound"
+brew "usage"
+brew "uv"
+brew "wget"
+brew "worktrunk"
+brew "oven-sh/bun/bun", trusted: true
+
+# GUI applications.
+cask "codexbar"
+cask "cursor"
+cask "docker"
+cask "ghostty"

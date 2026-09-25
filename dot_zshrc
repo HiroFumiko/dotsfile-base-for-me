@@ -1,0 +1,45 @@
+# Powerlevel10k instant prompt must stay near the top of this file.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=1000
+SAVEHIST=10000
+
+alias ll="ls -la"
+alias la="ls -a"
+alias rm="rm -i"
+alias cp="cp -i"
+alias reload="source ~/.zshrc"
+
+# Zinit and shell plugins.
+if [[ -r "$HOME/.local/share/zinit/zinit.git/zinit.zsh" ]]; then
+  source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+  zinit light zsh-users/zsh-syntax-highlighting
+  zinit light zsh-users/zsh-autosuggestions
+  zinit light zsh-users/zsh-completions
+  zinit light zdharma/history-search-multi-word
+
+  autoload -Uz compinit
+  compinit
+  autoload -Uz _zinit
+  _comps[zinit]=_zinit
+fi
+
+# Powerlevel10k is installed by Homebrew.
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+[[ -r "$HOME/.p10k.zsh" ]] && source "$HOME/.p10k.zsh"
+
+# Global runtimes and CLI tools. Project-local configuration takes precedence.
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# Shared personal preferences are versioned separately from shell initialization.
+source "$HOME/.config/zsh/personal.zsh"
+
+# API keys and machine-local overrides belong here and are never committed.
+[[ -r "$HOME/.config/zsh/local.zsh" ]] && source "$HOME/.config/zsh/local.zsh"

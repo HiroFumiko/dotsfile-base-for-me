@@ -1,0 +1,8 @@
+# Copy this file to local.zsh and fill values locally.
+# local.zsh is intentionally excluded from version control.
+
+# export OPENROUTER_API_KEY="..."
+# export GEMINI_API_KEY="..."
+
+# Machine-specific aliases can also live here.
+# alias cachy="ssh user@example-host"
