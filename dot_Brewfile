@@ -26,5 +26,4 @@ brew "oven-sh/bun/bun", trusted: true
 # GUI applications.
 cask "codexbar"
 cask "cursor"
-cask "docker"
 cask "ghostty"
