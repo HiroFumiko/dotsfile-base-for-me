@@ -39,6 +39,14 @@ if command -v brew >/dev/null 2>&1; then
   fi
 fi
 
+echo "--- install step outcomes (last chezmoi apply) ---"
+summary_script="$(cd "$(dirname "$0")" && pwd)/install-summary.sh"
+if bash "$summary_script"; then
+  :
+else
+  failures=$((failures + 1))
+fi
+
 if (( failures > 0 )); then
   echo "$failures checks failed."
   exit 1

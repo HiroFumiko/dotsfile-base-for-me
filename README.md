@@ -30,6 +30,8 @@ Gitが使えない場合は、GitHubからZIPをダウンロードして展開�
 
 完了後は新しいターミナルを開き、[手動確認リスト](docs/post-install-checklist.md)に沿ってアプリの起動・認証を確認してください。
 
+各導入ステップは失敗しても残りのステップを継続し、最後に結果をまとめて表示します。失敗したステップがあれば原因を解消して`chezmoi apply`を再実行してください。Brewfile・mise設定・Vimは前回成功時から変更がなければスキップします。
+
 導入に失敗した場合は原因を解消し、初期化前ならbootstrap、設定適用中なら`chezmoi apply`を再実行します。導入後のツール更新は各ツールの更新機能で行います。
 
 ## ローカル設定
@@ -51,7 +53,6 @@ Gitの追加設定は`~/.config/git/local.config`に記述できます。設定�
 ```bash
 python3 scripts/test-bootstrap.py
 bash scripts/test-cli-install.sh
+bash scripts/test-install-steps.sh
 bash scripts/test-vim-install.sh
-zsh -f scripts/test-shell.zsh
-zsh -f scripts/test-completion.zsh
 ```

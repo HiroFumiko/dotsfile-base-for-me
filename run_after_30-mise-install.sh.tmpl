@@ -1,0 +1,26 @@
+#!/bin/bash
+# mise config checksum: {{ include "private_dot_config/mise/config.toml" | sha256sum }}
+# Best-effort step: failures are recorded and the remaining steps still run.
+# The run_after_99 summary reports the outcome at the end of the apply.
+{{ include "scripts/lib-install-status.sh" }}
+set -euo pipefail
+
+step="30-mise-install"
+input_checksum="{{ include "private_dot_config/mise/config.toml" | sha256sum }}"
+dotfiles_begin_step "$step"
+rc=0
+dotfiles_load_brew_env || rc=$?
+if (( rc == 0 )); then
+  export DOTFILES_INPUT_CHECKSUM="$input_checksum"
+  set +e
+  ( {{ include "scripts/install-mise-install.sh" }} )
+  rc=$?
+  set -e
+fi
+if (( rc == 0 )); then
+  dotfiles_record_ok "$step"
+else
+  dotfiles_record_fail "$step" "exit $rc"
+  printf 'warn    %s failed (exit %d); continuing with remaining steps.\n' "$step" "$rc" >&2
+fi
+exit 0

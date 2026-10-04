@@ -1,0 +1,5 @@
+10-zinit|Zinit plugin manager
+15-extra-cli|Extra CLIs (cursor-agent, agy, claude)
+20-brew-bundle|Homebrew packages
+30-mise-install|mise language runtimes
+40-vim|Awesome Vim configuration

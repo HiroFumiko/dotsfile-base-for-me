@@ -1,0 +1,34 @@
+#!/bin/bash
+# Best-effort step: failures are recorded and the remaining steps still run.
+# The run_after_99 summary reports the outcome at the end of the apply.
+# Skips the upstream installer when the runtime is already configured at a
+# previously successful revision; a fresh clone or changed revision reinstalls.
+{{ include "scripts/lib-install-status.sh" }}
+set -euo pipefail
+
+step="40-vim"
+dotfiles_begin_step "$step"
+current=""
+if [[ -r "$HOME/.vimrc" && -r "$HOME/.vim_runtime/vimrcs/basic.vim" ]]; then
+  current="$(git -C "$HOME/.vim_runtime" rev-parse HEAD 2>/dev/null || true)"
+fi
+if [[ -n "$current" ]] && dotfiles_already_ok "$step" "$current"; then
+  printf 'ok      vim (already configured at %s, skipping)\n' "$current"
+  dotfiles_record_ok "$step"
+  exit 0
+fi
+set +e
+( {{ include "scripts/install-vim.sh" }} )
+rc=$?
+set -e
+if (( rc == 0 )); then
+  new_head="$(git -C "$HOME/.vim_runtime" rev-parse HEAD 2>/dev/null || true)"
+  if [[ -n "$new_head" ]]; then
+    dotfiles_mark_ok "$step" "$new_head"
+  fi
+  dotfiles_record_ok "$step"
+else
+  dotfiles_record_fail "$step" "exit $rc"
+  printf 'warn    %s failed (exit %d); continuing with remaining steps.\n' "$step" "$rc" >&2
+fi
+exit 0

@@ -1,0 +1,5 @@
+#!/bin/bash
+# Final install summary. This hook exits nonzero when any step failed, so the
+# overall apply still signals failure after every step had its chance to run.
+dotfiles_repo_dir="{{ .chezmoi.sourceDir }}"
+{{ include "scripts/install-summary.sh" }}

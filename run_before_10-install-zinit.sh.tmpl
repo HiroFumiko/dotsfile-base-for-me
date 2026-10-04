@@ -1,0 +1,19 @@
+#!/bin/bash
+# Best-effort step: failures are recorded and the remaining steps still run.
+# The run_after_99 summary reports the outcome at the end of the apply.
+{{ include "scripts/lib-install-status.sh" }}
+set -euo pipefail
+
+step="10-zinit"
+dotfiles_begin_step "$step"
+set +e
+( {{ include "scripts/install-zinit.sh" }} )
+rc=$?
+set -e
+if (( rc == 0 )); then
+  dotfiles_record_ok "$step"
+else
+  dotfiles_record_fail "$step" "exit $rc"
+  printf 'warn    %s failed (exit %d); continuing with remaining steps.\n' "$step" "$rc" >&2
+fi
+exit 0
